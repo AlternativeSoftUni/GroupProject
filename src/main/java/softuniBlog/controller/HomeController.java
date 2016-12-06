@@ -6,14 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.thymeleaf.util.StringUtils;
 import softuniBlog.entity.Article;
 import softuniBlog.entity.Category;
 import softuniBlog.repository.ArticleRepository;
 import softuniBlog.repository.CategoryRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Action;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @Controller
@@ -57,25 +60,22 @@ public class HomeController {
         return "base-layout";
     }
 
-    @GetMapping("/search/{query}")
-    public String search(@PathVariable String query, Model model) {
+    @GetMapping("/search")
+    public String search(HttpServletRequest request, Model model) {
+        String query = request.getParameter("query");
 
-        List<Article> articles=this.articleRepository.findAll();
-        List<Article> articlesWithQuery=new ArrayList<>();
+        List<Article> articles = this.articleRepository.findAll();
+        List<Article> articlesWithQuery = new ArrayList<>();
 
-        for (Article article:articles
-                ) {
-            if (article.getContent().contains(query)){
-                    articlesWithQuery.add(article);
-            }
-            else{
-                continue;
+        Locale locale = new Locale("en-US");
+        for (Article article : articles) {
+            if (StringUtils.containsIgnoreCase(article.getContent(), query, locale)) {
+                articlesWithQuery.add(article);
             }
         }
 
         model.addAttribute("articles", articlesWithQuery);
-        model.addAttribute("view","home/search");
-
+        model.addAttribute("view", "home/search");
         return "base-layout";
     }
 

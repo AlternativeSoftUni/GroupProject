@@ -1,9 +1,9 @@
 <main>
     <div class="container body-content">
         <h1>Search -
-            <th:block th:text="${category.name}"></th:block>
+            <!-- <th:block th:text="${query}"></th:block> -->
         </h1>
-        <div class="row" th:action="@{/home/search/{id}(id=${article.id})}" method="POST">
+        <div class="row" th:action="@{/search}" method="GET">
             <th:block th:each="article : ${articles}">
                 <div class="col-md-6">
                     <article>
