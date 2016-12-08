@@ -73,7 +73,6 @@ public class HomeController {
                 articlesWithQuery.add(article);
             }
         }
-
         model.addAttribute("articles", articlesWithQuery);
         model.addAttribute("view", "home/search");
         return "base-layout";

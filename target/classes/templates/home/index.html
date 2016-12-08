@@ -3,11 +3,16 @@
         <div class="row">
             <div class="col-md-6" th:each="category : ${categories}">
                 <header>
-                    <h2>
-                        <a th:href="@{/category/{id}(id=${category.id})}"
-                           th:text="${category.name + ' (' + #sets.size(category.articles) + ')'}">
-                        </a>
-                    </h2>
+                    <a  th:href="@{/category/{id}(id=${category.id})}">
+                    <div class="listingClass">
+                        <h2>
+
+                            <span style="color: #000000;"
+                                  th:text="${category.name + ' (' + #sets.size(category.articles) + ')'}">
+                            </span>
+                        </h2>
+                    </div>
+                    </a>
                 </header>
             </div>
         </div>
