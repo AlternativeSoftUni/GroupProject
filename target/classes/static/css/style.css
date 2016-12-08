@@ -1116,7 +1116,7 @@ a {
 a:hover,
 a:focus {
   color: #df691a;
-  text-decoration: underline;
+
 }
 a:focus {
   outline: 5px auto -webkit-focus-ring-color;
@@ -7028,4 +7028,26 @@ a.list-group-item-danger.active:focus {
 }
 .popover-title {
   border: none;
+}
+
+.listingClass {
+  background-color: #eeeeee;
+  opacity: 0.5;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  text-align: center
+}
+.listingClass:hover{
+  opacity: 0.8;
+}
+
+.listingClassDetails {
+  background-color: #eeeeee;
+  opacity: 0.8;
+  padding: 26px;
+  border: 1px solid black;
+  border-radius: 15px;
+  color: #000;
+  text-align: left;
 }
