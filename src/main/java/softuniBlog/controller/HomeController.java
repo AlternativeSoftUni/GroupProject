@@ -78,4 +78,9 @@ public class HomeController {
         return "base-layout";
     }
 
+    @RequestMapping("/about")
+    public String about(Model model) {
+        model.addAttribute("view", "about/about");
+        return "base-layout";
+    }
 }
