@@ -1,13 +1,11 @@
 <main>
     <div class="container body-container">
-        <div class="row">
-            <div id="main" class="col-sm-9">
+            <div id="main" class="listingClassDetails">
                 <div>
-                    <span th:text="${user.email}"></span>
-                    <br/>
-                    <span th:text="${user.fullName}"></span>
+                    <h3>Email:  <span th:text="${user.email}"></span></h3>
+
+                    <h3>Full Name:  <span th:text="${user.fullName}"></span></h3>
                 </div>
-            </div>
         </div>
     </div>
 </main>

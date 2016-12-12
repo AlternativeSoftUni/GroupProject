@@ -1,19 +1,19 @@
 <main>
     <div class="container body-content span=8 offset=2">
-        <div class="well">
+        <div class="listingClassDetails">
             <form class="form-horizontal" th:action="@{/article/edit/{id}(id=${article.id})}" method="POST">
                 <fieldset>
-                    <legend>Edit Post</legend>
+                    <legend style="color: #000000;">Edit Post</legend>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_title">Post Title</label>
+                        <label class="col-sm-4 control-label" style="color: #000000;" for="article_title">Post Title</label>
                         <div class="col-sm-4 ">
                             <input type="text" class="form-control" id="article_title" placeholder="Post Title" name="title" th:value="${article.title}"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_content">Content</label>
+                        <label class="col-sm-4 control-label" style="color: #000000;" for="article_content">Content</label>
                         <div class="col-sm-6">
                             <textarea class="form-control" rows="6" id="article_content" name="content" th:field="${article.content}"></textarea>
                         </div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_tags">Tags</label>
+                        <label class="col-sm-4 control-label" style="color: #000000;" for="article_tags">Tags</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="article_tags" placeholder="Tags" name="tagString" th:value="${tags}"/>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" th:href="@{/article/{id}(id = ${article.id})}">Cancel</a>
-                            <input type="submit" class="btn btn-success" value="Edit"/>
+                            <input type="submit" class="btn btn-success" value="Edit" style="color: #000000;"/>
                         </div>
                     </div>
                 </fieldset>

@@ -1,12 +1,12 @@
 <main>
     <div class="container body-content span=8 offset=2">
-        <div class="well">
+        <div class="listingClassDetails">
             <form class="form-horizontal" th:action="@{/admin/categories/edit/{id}(id=${category.id})}" method="POST">
                 <fieldset>
-                    <legend>Edit Category</legend>
+                    <legend style="color: #000000;">Edit Category</legend>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="category_name">Category Name</label>
+                        <label class="col-sm-4 control-label" style="color: #000000;" for="category_name">Category Name</label>
                         <div class="col-sm-4 ">
                             <input type="text" class="form-control" id="category_name" placeholder="Category Name" name="name" th:value="${category.name}"/>
                         </div>
@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" th:href="@{/admin/categories/}">Cancel</a>
-                            <input type="submit" class="btn btn-success" value="Edit"/>
+                            <input type="submit" class="btn btn-success" value="Edit" style="color: #000000;"/>
                         </div>
                     </div>
                 </fieldset>
