@@ -2,7 +2,8 @@
     <div class="container body-content">
 
         <h1 th:inline="text">Search -
-        <h1 th:text="${query}">QUERY</h1></h1>
+         "<span th:text="${query}">QUERY</span>"
+        </h1>
         <div class="row" th:action="@{/search}" method="GET">
             <th:block th:each="article : ${articles}">
                 <div class="col-md-6">
