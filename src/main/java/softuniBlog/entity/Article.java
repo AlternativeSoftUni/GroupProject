@@ -13,6 +13,7 @@ public class Article {
     private User author;
     private Category category;
     private Set<Tag> tags;
+    private Set<Picture> pictures;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,5 +87,15 @@ public class Article {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    @OneToMany()
+    @JoinColumn(name = "articles_pictures")
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 }

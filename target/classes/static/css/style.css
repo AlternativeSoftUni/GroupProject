@@ -1097,7 +1097,7 @@ body {
   font-size: 15px;
   line-height: 1.42857143;
   color: #ebebeb;
-  background-image: url("gingerbread_house_and_cookies-wallpaper-2560x1600.jpg");
+  background-image: url("cooking-Wallpapers.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -7049,4 +7049,14 @@ a.list-group-item-danger.active:focus {
   border-radius: 15px;
   color: #000;
   text-align: left;
+}
+
+.imageAboutUs{
+  display: inline-block;
+  align-content: center;
+  border:1px solid #eeeeee;
+  border-radius: 10px;
+  background-image: url("about_us.jpg");
+  height: 292px;
+  width: 578px;
 }

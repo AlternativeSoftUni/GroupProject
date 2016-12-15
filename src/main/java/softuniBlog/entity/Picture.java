@@ -10,6 +10,7 @@ public class Picture {
     private byte[] picture;
     private Article article;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
