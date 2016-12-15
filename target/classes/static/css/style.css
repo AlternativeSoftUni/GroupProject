@@ -7060,3 +7060,9 @@ a.list-group-item-danger.active:focus {
   height: 292px;
   width: 578px;
 }
+
+.imageError404 {
+  background-image: url("gingerbread_house_and_cookies-wallpaper-2560x1600.jpg");
+  width:auto;
+  height:auto;
+}

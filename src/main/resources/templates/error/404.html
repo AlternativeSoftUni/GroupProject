@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:include="fragments/head" th:with="pageTitle='Food Addicts'"></head>
+
+<body>
+
+<header th:include="fragments/header"></header>
+
+<main>
+    <div class="col-md-12">
+    <div class="listingClassDetails">
+        <h1 style="text-align: center; font-size: 60px">Error 404 - not found!</h1>
+        <h1 style="text-align: center;"><a th:href="@{/}">Back</a></h1>
+    </div>
+    </div>
+</main>
+
+<footer th:include="fragments/footer"></footer>
+
+<span th:include="fragments/scripts-bundle"></span>
+
+</body>
+</html>
