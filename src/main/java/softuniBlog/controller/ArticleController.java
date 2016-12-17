@@ -69,9 +69,13 @@ public class ArticleController {
         this.articleRepository.save(articleEntity);
 
         MultipartFile multipartFile = pictureBindingModel.getPicture();
-        Picture pictureEntity = new Picture(multipartFile.getBytes(), articleEntity);
 
-        this.pictureRepository.save(pictureEntity);
+        if (multipartFile != null && !multipartFile.isEmpty()) {
+
+            Picture pictureEntity = new Picture(multipartFile.getBytes(), articleEntity);
+
+            this.pictureRepository.save(pictureEntity);
+        }
 
         return "redirect:/";
     }
@@ -184,11 +188,16 @@ public class ArticleController {
             return "redirect:/article/" + id;
         }
 
+
         Set<Picture> pictures = this.pictureRepository.findByArticle(article);
-        this.pictureRepository.delete(pictures);
+        if (pictures != null && !pictures.isEmpty()) {
+            this.pictureRepository.delete(pictures);
+        }
 
         Set<Comment> comments = article.getComments();
-        this.commentRepository.delete(comments);
+        if (comments != null && !comments.isEmpty()) {
+            this.commentRepository.delete(comments);
+        }
 
         this.articleRepository.delete(article);
 
