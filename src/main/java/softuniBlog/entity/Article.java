@@ -60,7 +60,7 @@ public class Article {
         this.author = author;
         this.category = category;
         this.tags = tags;
-        this.comments=new HashSet<>();
+        this.comments = new HashSet<>();
     }
 
     public Article() {
@@ -91,14 +91,13 @@ public class Article {
         this.tags = tags;
     }
 
-    @OneToMany()
-    @JoinColumn(name = "articles_pictures")
-    public Set<Picture> getPictures() {
+    @OneToMany(mappedBy = "article")
+    public Set<Picture> getPicture() {
         return pictures;
     }
 
-    public void setPictures(Set<Picture> pictures) {
-        this.pictures = pictures;
+    public void setPicture(Set<Picture> picture) {
+        this.pictures = picture;
     }
 
     @OneToMany(mappedBy = "article")
