@@ -1098,7 +1098,7 @@ body {
   font-size: 15px;
   line-height: 1.42857143;
   color: #ebebeb;
-  background-image: url("cooking-Wallpapers.jpg");
+  background-image: url("../img/cooking-Wallpapers.jpg");
   background-repeat: no-repeat;
   background-size: auto;
 }
@@ -7066,13 +7066,13 @@ a.list-group-item-danger.active:focus {
   align-content: center;
   border:1px solid #eeeeee;
   border-radius: 10px;
-  background-image: url("about_us.jpg");
+  background-image: url("../img/about_us.jpg");
   height: 292px;
   width: 578px;
 }
 
 .imageError404 {
-  background-image: url("gingerbread_house_and_cookies-wallpaper-2560x1600.jpg");
+  background-image: url("../img/gingerbread_house_and_cookies-wallpaper-2560x1600.jpg");
   width:auto;
   height:auto;
 }
