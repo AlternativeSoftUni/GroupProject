@@ -8,7 +8,10 @@
                     </header>
 
                     <p th:text="${article.content}"></p>
-
+                    <div class="container">
+                        <img th:src="@{/article/{id}/picture(id=${article.id})}" width="50%" height="50%" alt=""
+                             aria-flowto="right"/>
+                    </div>
                     <small class="author" th:text="${article.author.fullName}"></small>
                     <p>
                         <a class="btn btn-default btn-xs" th:each="tag:${article.tags}"
@@ -22,7 +25,8 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="article_comment">Add Comment</label>
                                 <div class="col-sm-6">
-                                    <textarea class="form-control" rows="3" id="article_comment" name="content"></textarea>
+                                    <textarea class="form-control" rows="3" id="article_comment"
+                                              name="content"></textarea>
                                 </div>
                             </div>
 
