@@ -10,11 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import softuniBlog.bindingModel.ArticleBindingModel;
+import softuniBlog.bindingModel.PictureBindingModel;
 import softuniBlog.entity.*;
 import softuniBlog.repository.*;
 
 import javax.xml.ws.Action;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +25,9 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ArticleController {
+
+    @Autowired
+    private PictureRepository pictureRepository;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -35,8 +41,7 @@ public class ArticleController {
     @Autowired
     private TagRepository tagRepository;
 
-    @Autowired
-    private CommentRepository commentRepository;
+
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
@@ -50,7 +55,7 @@ public class ArticleController {
 
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess(ArticleBindingModel articleBindingModel) {
+    public String createProcess(ArticleBindingModel articleBindingModel, PictureBindingModel pictureBindingModel ) throws IOException {
 
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userEntity = this.userRepository.findByEmail(user.getUsername());
@@ -58,7 +63,12 @@ public class ArticleController {
         HashSet<Tag> tags = this.findTagsFromString(articleBindingModel.getTagString());
         Article articleEntity = new Article(articleBindingModel.getTitle(), articleBindingModel.getContent(), userEntity, category, tags);
 
-        this.articleRepository.saveAndFlush(articleEntity);
+        this.articleRepository.save(articleEntity);
+
+        MultipartFile multipartFile = pictureBindingModel.getPicture();
+        Picture pictureEntity = new Picture(multipartFile.getBytes(), articleEntity);
+
+        this.pictureRepository.save(pictureEntity);
 
         return "redirect:/";
     }
@@ -78,10 +88,10 @@ public class ArticleController {
 
         Article article = this.articleRepository.findOne(id);
 
-        List<Comment> comments=article.getComments().stream().collect(Collectors.toList());
+        List<Comment> comments = article.getComments().stream().collect(Collectors.toList());
 
         model.addAttribute("article", article);
-        model.addAttribute("comments",comments);
+        model.addAttribute("comments", comments);
         model.addAttribute("view", "article/details");
 
         return "base-layout";
