@@ -2,71 +2,62 @@
     <div class="container body-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="listingClassDetails">
-                    <article>
-                        <header>
-                            <h2 th:text="${article.title}"></h2>
-                            <h4>Category - "<span th:text="${article.category.name}"></span>"</h4>
-                        </header>
+                <article>
+                    <header>
+                        <h2 th:text="${article.title}"></h2>
+                    </header>
 
-                        <p th:text="${article.content}"></p>
+                    <p th:text="${article.content}"></p>
 
-                        <small class="author" th:text="${article.author.fullName}"></small>
-                        <p>
-                            <a class="btn btn-default btn-xs" th:each="tag:${article.tags}"
-                               th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
-                        </p>
+                    <small class="author" th:text="${article.author.fullName}"></small>
+                    <p>
+                        <a class="btn btn-default btn-xs" th:each="tag:${article.tags}"
+                           th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                    </p>
 
-                        <form class="form-horizontal" th:action="@{/article/{id}/add-comment(id=${article.id})}"
-                              method="POST">
-                            <fieldset>
+                    <form class="form-horizontal" th:action="@{/article/{id}/add-comment(id=${article.id})}"
+                          method="POST">
+                        <fieldset>
 
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label" for="article_comment">Add Comment</label>
-                                    <div class="col-sm-4">
-                                        <textarea class="form-control" rows="3" id="article_comment"
-                                                  name="content"></textarea>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="article_comment">Add Comment</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" rows="3" id="article_comment" name="content"></textarea>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-1 col-sm-offset-1">
-                                        <input type="submit" class="btn btn-primary" value="Comment"/>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-
-                        <footer>
-
-                            <div class="pull-right">
-
-                                <th:block sec:authorize="isAuthenticated()"
-                                          th:if="${user.isAdmin() OR user.isAuthor(article)}">
-                                    <a class="btn btn-success btn-xs"
-                                       th:href="@{/article/edit/{id}(id = ${article.id})}">Edit</a>
-                                    <a class="btn btn-danger btn-xs"
-                                       th:href="@{/article/delete/{id}(id = ${article.id})}">Delete</a>
-                                </th:block>
-
-                                <a class="btn btn-default btn-xs" th:href="@{/}">back &raquo;</a>
                             </div>
-                        </footer>
-                    </article>
-                </div>
 
-                <br/>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <input type="submit" class="btn btn-primary" value="Comment"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
 
-                <div class="col-md-12" th:each="comment : ${comments}">
-                    <div class="commentClass">
-                        <b class="author"
-                           th:text="${comment.user.fullName}"></b>
-                        <h3 th:text="${comment.content}"></h3>
-                    </div>
+                    <footer>
+
+                        <div class="pull-right">
+
+                            <th:block sec:authorize="isAuthenticated()"
+                                      th:if="${user.isAdmin() OR user.isAuthor(article)}">
+                                <a class="btn btn-success btn-xs" th:href="@{/article/edit/{id}(id = ${article.id})}">Edit</a>
+                                <a class="btn btn-danger btn-xs" th:href="@{/article/delete/{id}(id = ${article.id})}">Delete</a>
+                            </th:block>
+
+                            <a class="btn btn-default btn-xs" th:href="@{/}">back &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-sm-12" th:each="comment : ${comments}">
+                <div class="well well-sm">
+                    <b class="author"
+                       th:text="${comment.user.fullName}"></b>
+                    <h3 th:text="${comment.content}"></h3>
+
                     <br/>
                 </div>
-
-
             </div>
         </div>
     </div>
