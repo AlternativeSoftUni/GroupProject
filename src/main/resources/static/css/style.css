@@ -7076,3 +7076,10 @@ a.list-group-item-danger.active:focus {
   width:auto;
   height:auto;
 }
+
+.picture{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+}
