@@ -14,6 +14,7 @@ public class Article {
     private Category category;
     private Set<Tag> tags;
     private Set<Picture> pictures;
+    private Set<Comment> comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +60,7 @@ public class Article {
         this.author = author;
         this.category = category;
         this.tags = tags;
+        this.comments=new HashSet<>();
     }
 
     public Article() {
@@ -97,5 +99,14 @@ public class Article {
 
     public void setPictures(Set<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    @OneToMany(mappedBy = "article")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

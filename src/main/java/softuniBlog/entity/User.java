@@ -21,6 +21,8 @@ public class User {
 
     private Set<Article> articles;
 
+    private Set<Comment> comments;
+
     public User(String email, String fullName, String password) {
         this.email = email;
         this.password = password;
@@ -28,6 +30,7 @@ public class User {
 
         this.roles = new HashSet<>();
         this.articles = new HashSet<>();
+        this.comments=new HashSet<>();
     }
 
     public User() {
@@ -101,5 +104,14 @@ public class User {
     @Transient
     public boolean isAuthor(Article article) {
         return Objects.equals(this.getId(), article.getAuthor().getId());
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

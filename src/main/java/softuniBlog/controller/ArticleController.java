@@ -11,14 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import softuniBlog.bindingModel.ArticleBindingModel;
-import softuniBlog.entity.Article;
-import softuniBlog.entity.Category;
-import softuniBlog.entity.Tag;
-import softuniBlog.entity.User;
-import softuniBlog.repository.ArticleRepository;
-import softuniBlog.repository.CategoryRepository;
-import softuniBlog.repository.TagRepository;
-import softuniBlog.repository.UserRepository;
+import softuniBlog.entity.*;
+import softuniBlog.repository.*;
 
 import javax.xml.ws.Action;
 import java.util.ArrayList;
@@ -40,6 +34,9 @@ public class ArticleController {
 
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
@@ -81,7 +78,10 @@ public class ArticleController {
 
         Article article = this.articleRepository.findOne(id);
 
+        List<Comment> comments=article.getComments().stream().collect(Collectors.toList());
+
         model.addAttribute("article", article);
+        model.addAttribute("comments",comments);
         model.addAttribute("view", "article/details");
 
         return "base-layout";
@@ -202,4 +202,5 @@ public class ArticleController {
 
         return tags;
     }
+
 }
