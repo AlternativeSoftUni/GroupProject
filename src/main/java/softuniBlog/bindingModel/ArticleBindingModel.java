@@ -1,6 +1,8 @@
 package softuniBlog.bindingModel;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotNull;
 
 public class ArticleBindingModel {
@@ -13,6 +15,8 @@ public class ArticleBindingModel {
     private Integer categoryId;
 
     private String tagString;
+
+    private MultipartFile picture;
 
     public String getTitle() {
         return title;
@@ -44,5 +48,13 @@ public class ArticleBindingModel {
 
     public void setTagString(String tagString) {
         this.tagString = tagString;
+    }
+
+    public MultipartFile getPicture() {
+        return picture;
+    }
+
+    public void setPicture(MultipartFile picture) {
+        this.picture = picture;
     }
 }
