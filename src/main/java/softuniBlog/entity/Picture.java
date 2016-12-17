@@ -22,7 +22,7 @@ public class Picture {
     }
 
     @Lob
-    @Column(name = "pictures", nullable = false, columnDefinition = "mediumblob")
+    @Column(name = "pictures", nullable = false, columnDefinition = "longblob")
     public byte[] getPicture() {
         return picture;
     }
