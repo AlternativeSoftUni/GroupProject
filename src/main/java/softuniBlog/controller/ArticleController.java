@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -41,6 +42,8 @@ public class ArticleController {
     @Autowired
     private TagRepository tagRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
 
 
     @GetMapping("/article/create")
@@ -55,7 +58,7 @@ public class ArticleController {
 
     @PostMapping("/article/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess(ArticleBindingModel articleBindingModel, PictureBindingModel pictureBindingModel ) throws IOException {
+    public String createProcess(ArticleBindingModel articleBindingModel, PictureBindingModel pictureBindingModel) throws IOException {
 
         UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userEntity = this.userRepository.findByEmail(user.getUsername());
@@ -180,6 +183,12 @@ public class ArticleController {
         if (!isUserAuthorOrAdmin(article)) {
             return "redirect:/article/" + id;
         }
+
+        Set<Picture> pictures = this.pictureRepository.findByArticle(article);
+        this.pictureRepository.delete(pictures);
+
+        Set<Comment> comments = article.getComments();
+        this.commentRepository.delete(comments);
 
         this.articleRepository.delete(article);
 

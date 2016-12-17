@@ -32,21 +32,21 @@ public class CommentController {
 
     @PostMapping("/article/{id}/add-comment")
     @PreAuthorize("isAuthenticated()")
-    public String submitComment(@PathVariable Integer id, CommentBindingModel commentBindingModel){
-        if (!this.articleRepository.exists(id)){
+    public String submitComment(@PathVariable Integer id, CommentBindingModel commentBindingModel) {
+        if (!this.articleRepository.exists(id)) {
             return "redirect:/";
         }
-        Article article=this.articleRepository.findOne(id);
+        Article article = this.articleRepository.findOne(id);
 
-        UserDetails user=(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User author=this.userRepository.findByEmail(user.getUsername());
+        User author = this.userRepository.findByEmail(user.getUsername());
 
-        Comment comment=new Comment(commentBindingModel.getContent(),article,author);
+        Comment comment = new Comment(commentBindingModel.getContent(), article, author);
 
         this.commentRepository.saveAndFlush(comment);
 
-        return "redirect:/article/"+id;
+        return "redirect:/article/" + id;
     }
 
 }
