@@ -25,7 +25,7 @@
                             <fieldset>
 
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" for="article_comment">Add Comment</label>
+                                <label class="col-sm-1 control-label" for="article_comment">Add Comment</label>
                                 <div class="col-sm-6">
                                     <textarea class="form-control" rows="3" id="article_comment"
                                               name="content"></textarea>
@@ -66,7 +66,13 @@
                            th:text="${comment.user.fullName}"></b>
                         <h3 th:text="${comment.content}"></h3>
                     </div>
+                    <div class="pull-right" sec:authorize="isAuthenticated()"
+                         th:if="${user.isAdmin() OR user.isAuthor(comment)}">
+                        <a class="btn btn-success btn-xs" th:href="@{/comment/edit/{id}(id=${comment.id})}">Edit</a>
+                        <a class="btn btn-danger btn-xs" th:href="@{/comment/delete/{id}(id = ${comment.id})}">Delete</a>
+                    </div>
                     <br/>
+
                 </div>
             </div>
         </div>

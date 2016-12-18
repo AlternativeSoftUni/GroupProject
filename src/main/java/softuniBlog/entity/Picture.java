@@ -32,7 +32,7 @@ public class Picture {
     }
 
     @ManyToOne
-    @JoinColumn(name = "article_id")
+    @JoinColumn(name = "article_id",nullable = false)
     public Article getArticle() {
         return article;
     }

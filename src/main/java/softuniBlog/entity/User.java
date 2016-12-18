@@ -114,4 +114,9 @@ public class User {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    @Transient
+    public boolean isAuthor(Comment comment){
+        return Objects.equals(this.getId(),comment.getUser().getId());
+    }
 }

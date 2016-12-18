@@ -77,6 +77,7 @@ public class ArticleController {
             this.pictureRepository.save(pictureEntity);
         }
 
+
         return "redirect:/";
     }
 
