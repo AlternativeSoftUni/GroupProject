@@ -15,7 +15,10 @@
                         </header>
 
                         <p th:text="${article.summary}"></p>
-
+                        <div class="container">
+                            <img th:src="@{/article/{id}/picture(id=${article.id})}" width="10%" height="10%" alt=""
+                                 aria-flowto="right" align="auto"/>
+                        </div>
                         <small class="author" th:text="${article.author.fullName}"></small>
                         <p>
                             <a class="btn btn-default btn-xs" th:each="tag:${article.tags}"

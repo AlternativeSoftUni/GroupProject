@@ -1100,7 +1100,7 @@ body {
   color: #ebebeb;
   background-image: url("../img/cooking-Wallpapers.jpg");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
 }
 input,
 button,
